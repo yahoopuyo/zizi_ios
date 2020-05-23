@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ZiziKakuOnline : MonoBehaviour
 {
@@ -13,6 +14,11 @@ public class ZiziKakuOnline : MonoBehaviour
     ScoreManagerOnline sm;
     TurnManagerOnline tm;
     ModeData md;
+
+    public bool selectMode = false;  //ziziを選択するモード
+    private bool zizikakued;
+
+    [SerializeField] public GameObject zizikakuBtn;
 
     [PunRPC]
     void SendGuessList(int turn, int playernum, string guessListString)
@@ -27,8 +33,6 @@ public class ZiziKakuOnline : MonoBehaviour
         debugList = new List<int>(guessList);
         sm.zzkkList[playernum] = guessList;
     }
-
-    private bool zizikakued;
 
 
 
@@ -58,17 +62,35 @@ public class ZiziKakuOnline : MonoBehaviour
         guessListIndex.Remove(cardIndex1);
         guessListIndex.Remove(cardIndex2);
     }
-    
+
+    private void FlipBtnColor(bool red)
+    {
+        if(red)
+        {
+            zizikakuBtn.GetComponent<Image>().color = Color.red;
+        }
+        else
+        {
+            zizikakuBtn.GetComponent<Image>().color = Color.white;
+        }
+    }
+
     //じじかくボタン
     public void OnClicked()
     {
-        if (guessListIndex.Count == 0) return;
+        if (guessListIndex.Count == 0)
+        {
+            selectMode = !selectMode;
+            FlipBtnColor(selectMode);
+            return;
+        }
         zizikakued = true;
+        selectMode = false;
         string gListString = "";
         foreach (int card in guessListIndex)
         {
             if (card < 10) gListString += "0" + card.ToString();
-            else gListString += card.ToString(); 
+            else gListString += card.ToString();
         }
         PhotonView view = GetComponent<PhotonView>();
         view.RPC("SendGuessList", PhotonTargets.All, tm.turn, md.player, gListString);
@@ -100,6 +122,6 @@ public class ZiziKakuOnline : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

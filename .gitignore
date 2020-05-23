@@ -51,6 +51,14 @@ net_test.app/
 opensource_test.app/
 randomzizi.app/
 randomCPUzizi/
+zizi_ios_test/
+zizi/
+zizi(仮).exe/
+UnityCommon.props
+UnityCrashHandler64.exe
+UnityPlayer.dll
+UnityPlayerStub/
+
 #others
 *.terrainlayer
 *.terrainlayer.meta

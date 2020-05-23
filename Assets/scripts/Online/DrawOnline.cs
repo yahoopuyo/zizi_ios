@@ -162,6 +162,16 @@ public class DrawOnline : MonoBehaviour
     //    }
     //}
 
+    public void OnClickComDraw()  //for iOS
+    {
+      get();
+      if (md.playerInfo[tP] == "Com" && md.IsHost()) //master player のみがコンピューター操作できるように、後でIsHostにしよう
+      {
+          if (moveFlag || flashFlag) return;  //待機処理中にもう一回押された時に無効化
+          int drawncard= record.Uniform[coms[tP].draw(dP)];
+          drawWithAnimation(dP, drawncard, tP);
+      }
+    }
 
     // Update is called once per frame
     void Update()
@@ -186,7 +196,7 @@ public class DrawOnline : MonoBehaviour
         }
     }
 
-       
+
     //if (tP == 0)
     //{
     //    card.GetComponent<Click>().enabled = true;

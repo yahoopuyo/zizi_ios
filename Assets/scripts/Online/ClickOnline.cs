@@ -82,7 +82,7 @@ public class ClickOnline : Photon.MonoBehaviour, IPointerClickHandler, IPointerE
     void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
     {
         get();
-        if (eventData.button == PointerEventData.InputButton.Left) //クリック回数>0の時  一応残すけどこのままいくならif文とっても良いはず
+        if (!zizikaku.selectMode) //zizi選択モードじゃないとき
         {
             if (turnPlayer != player) return;
             if (drawnPlayer == hands.Cardownerreturn(cardIndex))
@@ -100,7 +100,7 @@ public class ClickOnline : Photon.MonoBehaviour, IPointerClickHandler, IPointerE
                 draw.drawWithAnimation(drawnPlayer, cardIndex, turnPlayer);
             }
         }
-        if (eventData.button == PointerEventData.InputButton.Right)
+        else
         {
             int owner = hands.Cardownerreturn(cardIndex);
             bool face;
