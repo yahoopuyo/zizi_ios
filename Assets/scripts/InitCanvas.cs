@@ -15,7 +15,7 @@ public class InitCanvas : MonoBehaviour
     void Start()
     {
         md = GameObject.Find("ModeData").GetComponent<ModeData>();
-        if(!md.IsHost()) comDrawbtn.SetActive(false);
+        if(!md.IsHost() || md.IsSolo()) comDrawbtn.SetActive(false);
         canvasStart = GameObject.Find("Canvas_0");
         canvasStart.SetActive(true);
         setP = GameObject.Find("SettingPanel");

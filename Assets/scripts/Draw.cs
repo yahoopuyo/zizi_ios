@@ -34,7 +34,7 @@ public class Draw : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             coms[i] = GameObject.Find("Com" + (i + 1)).GetComponent<ComputerVer2>();
-            //Debug.Log("Com" + (i + 1)); 
+            //Debug.Log("Com" + (i + 1));
         }
     }
 
@@ -76,7 +76,7 @@ public class Draw : MonoBehaviour
             record.updateRecordUnpaired(turn + 1, cardIndex, turnPlayer);  //棋譜操作
             record.updateInfoUnpaired(turnPlayer, cardIndex);   //プライベート情報操作
         }
-        
+
         hands.hands[dP].Remove(cardIndex); //引かれる人の手札配列からカードを削除
         hands.hands[tP].Add(cardIndex); //引いた人の手札配列にカードを追加
         hands.DeletePair((cardIndex % 13) + 1, turnPlayer);
@@ -163,6 +163,16 @@ public class Draw : MonoBehaviour
     //}
 
 
+    public void OnClickComDraw()  //for iOS
+    {
+        get();
+        if (tP != 0) //master player のみがコンピューター操作できるように、後でIsHostにしよう
+        {
+            if (moveFlag || flashFlag) return;  //待機処理中にもう一回押された時に無効化
+            int drawncard= record.Uniform[coms[tP].draw(dP)];
+            drawWithAnimation(dP, drawncard, tP);
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -183,7 +193,7 @@ public class Draw : MonoBehaviour
                     if (level == 1) drawnUniform = cpu1(dP);
                     else if (level == 2) drawnUniform = cpu2(dP);
                     else drawnUniform = record.Uniform[coms[tP - 1].draw(dP)];
-                    
+
                     drawWithAnimation(dP, drawnUniform, tP);
                 }
             }

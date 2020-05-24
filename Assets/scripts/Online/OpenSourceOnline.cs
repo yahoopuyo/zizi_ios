@@ -45,6 +45,13 @@ public class OpenSourceOnline : MonoBehaviour
             cardModel.ToggleFace(true);
         }
     }
+
+    public void updateSource()
+    {
+        hand = GameObject.Find("Hand");
+        hands = hand.GetComponent<HandsOnline>();
+        Display();
+    }
     //private void SetHolder()
     //{
     //    if (holder == null) holder = new Vector3[13];
@@ -81,4 +88,3 @@ public class OpenSourceOnline : MonoBehaviour
 
     }
 }
-
