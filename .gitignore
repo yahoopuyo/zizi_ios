@@ -37,13 +37,13 @@ sysinfo.txt
 
 #Photon related
 #Assets/Photon Unity Networking/
-Assets/PhotonChatAPI/
+#Assets/PhotonChatAPI/
 #Assets/Plugins/
 #Assets/Photon Unity Networking.meta
-Assets/PhotonChatAPI.meta
+#Assets/PhotonChatAPI.meta
 #Assets/Plugins.meta
 #Assets/_TerrainAutoUpgrade.meta
-Assets/PhotonChatApi/
+#Assets/PhotonChatApi/
 
 
 #buildrelated??
