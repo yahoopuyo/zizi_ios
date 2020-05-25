@@ -168,9 +168,13 @@ public class Draw : MonoBehaviour
         get();
         if (tP != 0) //master player のみがコンピューター操作できるように、後でIsHostにしよう
         {
-            if (moveFlag || flashFlag) return;  //待機処理中にもう一回押された時に無効化
-            int drawncard= record.Uniform[coms[tP].draw(dP)];
-            drawWithAnimation(dP, drawncard, tP);
+          if (moveFlag || flashFlag) return;  //待機処理中にもう一回押された時に無効化
+          int drawnUniform;
+          if (level == 1) drawnUniform = cpu1(dP);
+          else if (level == 2) drawnUniform = cpu2(dP);
+          else drawnUniform = record.Uniform[coms[tP - 1].draw(dP)];
+
+          drawWithAnimation(dP, drawnUniform, tP);
         }
     }
     // Update is called once per frame

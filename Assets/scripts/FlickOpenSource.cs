@@ -14,7 +14,7 @@ public class FlickOpenSource : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     //for flick input
@@ -31,8 +31,8 @@ public class FlickOpenSource : MonoBehaviour
     private void OnFlicked( object sender, EventArgs e )
     {
         if(oso != null) oso.updateSource();
+        if(os != null) os.updateSource();
         cc.switchCamera();
-
     }
 
     // Update is called once per frame

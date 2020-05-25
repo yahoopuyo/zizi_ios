@@ -45,6 +45,14 @@ public class ShowSource : MonoBehaviour
             cardModel.ToggleFace(true);
         }
     }
+
+    public void updateSource()
+    {
+        hand = GameObject.Find("Hand");
+        hands = hand.GetComponent<Hands>();
+        Display();
+    }
+
     //private void SetHolder()
     //{
     //    if (holder == null) holder = new Vector3[13];

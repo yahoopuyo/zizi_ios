@@ -15,7 +15,8 @@ public class InitCanvas : MonoBehaviour
     void Start()
     {
         md = GameObject.Find("ModeData").GetComponent<ModeData>();
-        if(!md.IsHost() || md.IsSolo()) comDrawbtn.SetActive(false);
+        if(!md.IsHost() && !md.IsSolo()) comDrawbtn.SetActive(false);
+        if(md.IsSolo()) comDrawbtn.SetActive(true);
         canvasStart = GameObject.Find("Canvas_0");
         canvasStart.SetActive(true);
         setP = GameObject.Find("SettingPanel");
@@ -24,8 +25,8 @@ public class InitCanvas : MonoBehaviour
         setB.SetActive(true);
         gameoverP = GameObject.Find("GameOverPanel");
         gameoverP.SetActive(false);
-        debugP = GameObject.Find("debugPanel");
-        debugP.SetActive(false);
+        //debugP = GameObject.Find("debugPanel");
+        //debugP.SetActive(false);
     }
 
     // Update is called once per frame
